@@ -6,16 +6,30 @@ import {
   StyledLabel,
   RegisterButton
 } from "./styled";
+import { useState } from "react";
 
-function TelaLogin(props) {
-  const login = () => {
-    // fluxo de login (ainda veremos)
-    props.mudarTela("TelaPrincipal");
-  };
+function TelaLogin(props){
+    const [email, setEmail] = useState("");
+    const [senha , setSenha] = useState("");
+    const login = () => {
+      props.mudarTela("TelaPrincipal")
+    
+      const teste = {
+        email:email,
+        senha:senha
+      }
+      console.log(teste);
+    }
+  
 
-  const mostrarTelaCadastro = () => {
-    props.mudarTela("TelaCadastro");
-  };
+
+    const imprimirEmail = (e) => {
+      setEmail(e.target.value)
+    }
+
+    const imprimirSenha = (e) => {
+      setSenha(e.target.value)
+    }
 
   return (
     <FormContainer>
@@ -23,14 +37,14 @@ function TelaLogin(props) {
 
       <Form>
         <StyledLabel htmlFor="email"> E-mail: </StyledLabel>
-        <Input htmlFor="email" />
+        <Input htmlFor="email" value={email} onChange={imprimirEmail}/>
 
         <StyledLabel htmlFor="password">Senha: </StyledLabel>
-        <Input id="password" type={"password"} />
+        <Input id="password" type={"password"} value={senha} onChange={imprimirSenha}/>
 
         <SendButton onClick={login}>Entrar</SendButton>
 
-        <RegisterButton onClick={mostrarTelaCadastro}>
+        <RegisterButton onClick={props.mostrarTelaCadastro} onChange={props.imprimirInformacao}>
           Cadastre-se
         </RegisterButton>
       </Form>

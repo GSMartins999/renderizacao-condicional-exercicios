@@ -8,10 +8,10 @@ import {
 } from "./styled";
 
 function TelaCadastro(props) {
-  const cadastrar = () => {
-    // fluxo de cadastro (ainda veremos)
-    props.mudarTela("TelaPrincipal");
-  };
+
+  function TelaCadastroEndereco(){
+    props.mudarTela("TelaCadastroEndereco")
+  }
 
   const mostrarTelaLogin = () => {
     props.mudarTela("TelaLogin");
@@ -37,7 +37,7 @@ function TelaCadastro(props) {
         </StyledLabel>
         <Input id="password-confirm" />
 
-        <SendButton onClick={cadastrar}>Cadastrar</SendButton>
+        <SendButton onClick={TelaCadastroEndereco}>Cadastrar endereço</SendButton>
 
         <BackToLoginButton onClick={mostrarTelaLogin}>
           Já possuo cadastro
